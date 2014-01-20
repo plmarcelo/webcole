@@ -1,0 +1,30 @@
+{% extends 'layouts.admin' %}
+
+{% block content %}
+<ul class="nav nav-tabs">
+    {% for area in areas %}
+        {% if loop.first %}
+			<li class="active"><a href="#doc_type{{ area.id }}" data-toggle="tab">{{ area.name }}</a></li>
+		{% else %}
+			<li><a href="#doc_type{{ area.id }}" data-toggle="tab">{{ area.name }}</a></li>
+		{% endif %}
+	{% endfor %}
+</ul>
+
+<!-- The tab content. -->
+<div id="my-tab-content" class="tab-content">
+
+    {% for area in areas %}
+        {% if loop.first %}
+            <div class="tab-pane active" id="doc_type{{ area.id }}">
+        {% else %}
+            <div class="tab-pane" id="doc_type{{ area.id }}">
+        {% endif %}
+            {% for document in area.documents %}
+                <p>{{ document.name }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+</div>
+{% endblock %}

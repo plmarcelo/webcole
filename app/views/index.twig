@@ -1,0 +1,15 @@
+{% extends 'layouts.front' %}
+
+{% block content %}
+	{% for doc in docs %}
+		<div class="panel panel-default">
+			<div class="panel-heading"><h3><a href="/document/{{ doc.id }}">{{ doc.name }}</a></h3></div>
+			<div class="panel-body">
+				{{ doc.description }}
+			</div>
+		</div>
+	{% else %}
+		No hay documentos publicados
+	{% endfor %}
+		{{ docs.links|raw }}
+{% endblock %}

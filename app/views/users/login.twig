@@ -1,0 +1,28 @@
+{% extends 'layouts.front' %}
+
+{% block content %}
+
+{{ form_open({ 'method': 'POST', 'url': '/login', 'role': 'form'})|raw }}
+
+{% if session_has( 'registro' ) %}
+<h3>{{ session_get('registro') }}</h3></br>
+{% endif %}
+
+<div class="form-group">
+	{{ form_label('Usuario')|raw }}
+	{{ form_text('username', '', {'class' : 'form-control'})|raw }}
+	<span class="help-block">{{ errors.first('username') }}</span>
+</div>
+<div class="form-group">
+	{{ form_label('Contraseña')|raw }}
+	{{ form_password('password', {'class' : 'form-control'})|raw }}
+	<span class="help-block">{{ errors.first('password') }}</span>
+</div>
+<div class="form-group">
+	<p>{{ form_submit('Acceder', {'class' :'btn btn-default'})|raw }}</p>
+	<p><a href="/signup" class="btn btn-default">Registrarme</a></p>
+</div>
+
+{{ form_close()|raw }}
+
+{% endblock %}

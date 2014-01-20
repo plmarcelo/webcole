@@ -1,0 +1,66 @@
+{% extends 'layouts.admin' %}
+
+{% block page_title %}Listado de tipos de documentos{% endblock %}
+
+{% block content %}
+
+	<div class="row">
+	<div class="col-lg-6">
+
+		{% if not doc_type %}
+			{{ form_open( {'method': 'POST', 'url': '/admin/doc_types/add', 'role': 'form'} )|raw }}
+
+			<div class="form-group">
+				{{ form_label('Nombre')|raw }}
+				{{ form_text('name', '', {'class': 'form-control'})|raw }}
+				<span class="help-block">{{ errors.first('name') }}</span>
+			</div>
+
+			<div class="form-group">
+				<p>{{ form_submit('Añadir', {'class': 'btn btn-default'} )|raw }}</p>
+			</div>
+
+			{{ form_close()|raw }}
+		{% else %}
+			{{ form_open( {'method': 'POST', 'url': '/admin/doc_types/update', 'role': 'form'} )|raw }}
+
+			<div class="form-group">
+				{{ form_label('Nombre')|raw }}
+				{{ form_text('name', doc_type.name, {'class': 'form-control'})|raw }}
+				<span class="help-block">{{ errors.first('name') }}</span>
+			</div>
+
+			<div class="form-group">
+				<p>{{ form_submit('Actualizar', {'class': 'btn btn-default'} )|raw }}</p>
+			</div>
+
+			{{ form_close()|raw }}
+		{% endif %}
+
+	</div>
+	<div class="col-lg-6">
+		<table class="table">
+			<thead>
+			<tr>
+				<td>Nombre</td>
+				<td>Acción</td>
+			</tr>
+			</thead>
+			<tbody>
+			{% for item in doc_types %}
+			<tr>
+				<td>{{item.name}}</td>
+				<td>
+					<a href="/admin/doc_types/edit/{{ item.id }}" class="btn btn-default">
+						<span class="glyphicon glyphicon-edit"></span> Editar
+					</a>
+					<a href="/admin/doc_types/delete/{{ item.id }}" class="btn btn-default">
+						<span class="glyphicon glyphicon-remove"></span> Eliminar
+					</a>
+				</td>
+			</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'layouts.admin' %}
+
+
+{% block page_title %}Listado de documentos{% endblock %}
+
+{% block content %}
+<ul class="nav nav-tabs">
+    {% for doc_type in doc_types %}
+        {% if loop.first %}
+			<li class="active"><a href="#doc_type{{ doc_type.id }}" data-toggle="tab">{{ doc_type.name }}</a></li>
+		{% else %}
+			<li><a href="#doc_type{{ doc_type.id }}" data-toggle="tab">{{ doc_type.name }}</a></li>
+		{% endif %}
+	{% endfor %}
+</ul>
+
+<!-- The tab content. -->
+<div id="my-tab-content" class="tab-content">
+
+    {% for doc_type in doc_types %}
+        {% if loop.first %}
+            <div class="tab-pane active" id="doc_type{{ doc_type.id }}">
+        {% else %}
+            <div class="tab-pane" id="doc_type{{ doc_type.id }}">
+        {% endif %}
+            {% for document in doc_type.documents %}
+                <p>{{ document.name }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+</div>
+{% endblock %}

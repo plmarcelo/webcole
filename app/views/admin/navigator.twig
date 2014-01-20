@@ -1,0 +1,33 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{{ url('/admin') }}">Brand</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            {% if route_name == 'admin_docs' %}
+                <li class="active"><a href="{{ route('admin_docs') }}">Documentos</a></li>
+            {% else %}
+                <li><a href="{{ route('admin_docs') }}">Documentos</a></li>
+            {% endif %}
+            {% if route_name == 'list_doc_types' %}
+                <li class="active"><a href="{{ route('list_doc_types') }}">Tipos de documentos</a></li>
+            {% else %}
+                <li><a href="{{ route('list_doc_types') }}">Tipos de documentos</a></li>
+            {% endif %}
+            <li><a href="#">Contact</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><span>¡Hola {{ session_get( 'user_username' ) }}!</span></li>
+	        <li><a href="{{ url('/') }}">Ir a la web</a></li>
+            <li><a href="{{ url('/logout') }}">Salir</a></li>
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Laravel PHP Framework</title>
+	<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="/css/admin.css" rel="stylesheet" media="screen">
+</head>
+<body>
+    {% include 'admin.navigator' %}
+	<div class="container">
+
+		<h1>{% block page_title %}Panel de control{% endblock %}</h1>
+        {% block content %}
+            <p>Es es el panel de control!</p>
+        {% endblock %}
+	</div>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>
