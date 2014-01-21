@@ -6,3 +6,5 @@ Webcole is a personal project. Is the website that I'm developing for my son's s
 Lo he pasado a la rama mejorandola
 
 He cambiado la url de la configuración para que no pida mas login ni pass
+
+Aun sigue pidiendome el passphrase
